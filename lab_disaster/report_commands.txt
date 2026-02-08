@@ -1,0 +1,88 @@
+  308  git clone https://github.com/Weakne55/Bioinformatics305.git
+  309  cd Bioinformatics305
+  310  ls
+  311  git remote remove origin
+  312  git remote add origin git@github.com:anngellito/Bioinformatics305.git
+  313  git status
+  314  ls
+  315  ls lab_disaster
+  316  git remote -v
+  317  cd lab_disaster
+  318  find raw_data -name "*.tmp" -delete
+  319  git add .
+  320  git commit -m "Cleanup temp files"
+  321  git log
+  322  grep "TGCA" raw_data/huge_sequencing_run.fastq
+  323  grep -c "TGCA" raw_data/huge_sequencing_run.fastq
+  324  grep "TGCA" raw_data/huge_sequencing_run.fastq > infected_reads.txt
+  325  git checkout -b investigation
+  326  git add infected_reads.txt
+  327  git commit -m "2 задание - create infected_reads.txt"
+  328  git log
+  329  head -n 50 raw_data/huge_sequencing_run.fastq > mini_run.fastq
+  330  tail -n 50 raw_data/huge_sequencing_run.fastq >> mini_run.fastq
+  331  cat mini_run.fastq
+  332  git add mini_run.fastq
+  333  git branch
+  334  git commit -m "3 задание - create mini_run.fastq "
+  335  rm experiment.log
+  336  ls
+  337  git status
+  338  git checkout -- experiment.log
+  339  echo "git checkout -- experiment.log" > command.txt
+  340  git checkout master
+  341  cat command.txt
+  342  git add command.txt
+  343  git commit -m "4 задание - restore experiment.log"
+  344  cat <<EOF > access.log
+User: LabAdmin
+User: Student
+User: Hacker
+User: LabAdmin
+User: Student
+User: Student
+EOF
+
+  345  sort access.log
+  346  sort access.log | uniq -c
+  347  sort access.log | uniq -c | sort -nr
+  348  sort access.log | uniq -c | sort -nr > sort.txt
+  349  git branch
+  350  git add sort.txt
+  351  git commit -m "5 задание - create sort.txt"
+  352  git merge investigation
+  353  echo "GeneA GeneB GeneC" > genes.tsv
+  354  tr ' ' ',' < genes.tsv > genes_fixed.csv
+  355  git branch
+  356  git add genes_fixed.csv
+  357  git commit -m "6 задание - create genes.tsv and genes_fixed.csv"
+  358  git checkout -b cleaning
+  359  find lab_disaster -type f -size +1k -exec du -h {} \; > diskusage.file
+  360  find . -type f -size +1k -exec du -h {} \; > diskusage.file
+  361  find . -name "*.fastq" -exec du -h {} \; >> diskusage.file
+  362  git add diskusage.file
+  363  git branch
+  364  git commit -m "задание 7 - create diskusage.file"
+  365  echo "пупупу" > test.txt
+  366  git add test.txt
+  367  git commit -m "Initial test commit"
+  368  git log --oneline
+  369  echo "пупупу пупу" > forgotten.txt
+  370  git add forgotten.txt
+  371  git commit --amend --no-edit
+  372  git log --oneline
+  373  cat << 'EOF' > amend.txt
+Да, хеш изменился (было: f82b831, стало: 3005a84)
+
+Хеш зависит от содержимого коммита - после добавления файла forgotten.txt commit стал другим — поэтому изменился хэш.
+EOF
+
+  374  cat amend.txt
+  375  git branch
+  376  branch master
+  377  git checkout master
+  378  git add amend.txt
+  379  git commit -m "7 задание - create amend.txt"
+  380  history
+  381  history | tail -n +308
+  382  history | tail -n +308 > report_commands.txt
