@@ -9,3 +9,10 @@ lab_disaster/genes.tsv
 черновики/
 homework-single-cell/data/
 homework-single-cell-3/data/
+homework_immune/outputs/
+
+*.md
+*.gz
+*.txt
+*.csv
+*.zip
